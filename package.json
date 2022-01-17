@@ -1,0 +1,23 @@
+{
+  "name": "notemaker_mern_webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anurodh437/Notemaker_Mern_WebApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anurodh437/Notemaker_Mern_WebApp/issues"
+  },
+  "homepage": "https://github.com/Anurodh437/Notemaker_Mern_WebApp#readme",
+  "dependencies": {
+    "dotenv": "^14.1.0",
+    "express": "^4.17.2"
+  }
+}
