@@ -1,18 +1,25 @@
-import React from "react";
+import { useEffect } from "react";
 import { Button, Container, Row } from "react-bootstrap";
 import "./LandingPage.css";
 
 const LandingPage = () => {
+  // useEffect(() => {
+  //   const userInfo = localStorage.getItem("userInfo");
+
+  //   if (userInfo) {
+  //     history.push("/mynotes");
+  //   }
+  // }, [history]);
+
   return (
     <div className="main">
       <Container>
         <Row>
           <div className="intro-text">
             <div>
-              <h1 className="title">
-                Welcome to
-                <br /> NoteMaker
-              </h1>
+              <div className="title">Welcome to</div>
+              <br />
+              <div className="title1">NoteMaker</div>
               <p className="subtitle">Best Place to keep all your notes.</p>
             </div>
             <div className="buttonContainer">
@@ -29,7 +36,7 @@ const LandingPage = () => {
                 >
                   Signup
                 </Button>
-              </a> 
+              </a>
             </div>
           </div>
         </Row>

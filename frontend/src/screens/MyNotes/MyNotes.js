@@ -29,7 +29,7 @@ const MyNotes = () => {
         <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
           Create New Note
         </Button>
-      </Link>m 
+      </Link>
       {notes.map((note) => (
         <Accordion key={note._id}>
           <Card style={{ margin: 10 }}>

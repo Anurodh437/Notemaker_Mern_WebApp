@@ -9,11 +9,17 @@
 
 .title {
   font-size: 80px;
+  margin-top: -1.7em;
+}
+
+.title1{
+  font-size: 80px;
+  margin-top: -4.4rem;
 }
 
 .subtitle {
   font-size: 25px;
-  padding-top: 10px;
+  margin-top: -10px;
 }
 
 .intro-text {
@@ -23,7 +29,7 @@
 }
 
 .buttonContainer{
-    margin-top: 50px;
+    padding-top: 45px;
     display: flex;
     margin-left: 400px;
 }
