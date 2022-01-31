@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MainScreen from "../../components/MainScreen";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../LoginPage/LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage";
-import axios from "axios";
 import LoadingPage from "../../components/Loading/LoadingPage";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../actions/userActions";
+import { useHistory } from "react-router-dom";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -17,42 +19,27 @@ const RegisterPage = () => {
   const [confirmpassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
   const [picMessage, setPicMessage] = useState(null);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
+  
+  const history = useHistory();
+
+  useEffect(() => {
+    if(userInfo){
+      history.push("/mynotes");
+    }
+  }, [history, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
     if (password !== confirmpassword) {
-      setMessage("Passswords do not match");
+      setMessage("Passwords do not match");
     } else {
-      setMessage(null);
-      try {
-        const config = {
-          headers: {
-            "Content-type": "application/json",
-          },
-        };
-        setLoading(true);
-
-        const { data } = await axios.post(
-          "/api/users",
-          {
-            name,
-            email,
-            password,
-            pics,
-          },
-          config
-        );
-        console.log(data);
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        setLoading(false);
-      } catch (error) {
-        setError(error.response.data.message);
-      }
+      dispatch(register(name, email, password, pics));
     }
-    console.log(name, email);
   };
 
   const postDetails = (pics) => {

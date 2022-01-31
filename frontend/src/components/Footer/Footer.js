@@ -10,11 +10,12 @@ const Footer = () => {
         bottom: 0,
         display: "flex",
         justifyContent: "center",
+        backgroundColor:"#708090"
       }}
     >
       <Container>
         <Row>
-          <Col className="text-center py-3">Copyright &copy; NoteMaker</Col>
+          <Col style={{fontSize:'16px',color:'white'}} className="text-center py-2">Copyright &copy; NoteMaker</Col>
         </Row>
       </Container>
     </footer>
