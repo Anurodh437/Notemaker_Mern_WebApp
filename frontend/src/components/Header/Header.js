@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Nav,
   Form,
@@ -11,7 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 
-const Header = () => {
+const Header = ({ setSearch }) => {
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -22,6 +22,8 @@ const Header = () => {
     dispatch(logout);
     history.push("/");
   };
+
+  useEffect(() => {}, [userInfo]);
 
   return (
     <Navbar bg="primary" expand="lg" variant="dark">
@@ -37,21 +39,33 @@ const Header = () => {
                 type="text"
                 placeholder="Search"
                 className="mr-sm-2"
+                onChange={(e) => setSearch(e.target.value)}
               />
             </Form>
           </Nav>
-          <Nav>
-            <Nav.Link>
-              <Link to="/mynotes">My Notes</Link>
-            </Nav.Link>
-            <NavDropdown title="UserName" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={logoutHandler}>
-                Logout
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
+
+          {userInfo ? (
+            <Nav>
+              <Nav.Link>
+                <Link to="/mynotes">My Notes</Link>
+              </Nav.Link>
+              <NavDropdown title={userInfo?.name} id="basic-nav-dropdown">
+                <NavDropdown.Item href="/profile">
+                  My Profile
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={logoutHandler}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          ) : (
+            <Nav>
+              <Nav.Link>
+                <Link to="/login">login</Link>
+              </Nav.Link>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
